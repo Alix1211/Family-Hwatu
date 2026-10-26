@@ -1,0 +1,437 @@
+/* Family Hwatu, pastel UI pass (2026-10-26).
+   Overlay only: preserve the designer's floral boards/plates, card fronts,
+   hit targets, AI/rules, game balances, and accessibility labels. */
+
+:root {
+  --fh-ivory: #fff9f1;
+  --fh-ink: #543e45;
+  --fh-rose: #e9b7c8;
+  --fh-rose-border: #c78da4;
+  --fh-mint: #c6e8de;
+  --fh-mint-border: #84b9aa;
+  --fh-lavender: #ded5f2;
+  --fh-lavender-border: #ab9dcc;
+}
+
+/* Menu and point-value pages keep the cut-out image assets. */
+.dashboard-site-page {
+  --fh-accent: #b56782;
+  --fh-header-top: #edc0c9;
+  --fh-header-bottom: #d89aaa;
+}
+.dashboard-site-page.gostop-lobby-page {
+  --fh-accent: #538e83;
+  --fh-header-top: #c9e9e0;
+  --fh-header-bottom: #acced0;
+  background: #e6f5ee url('/floral/gostop-mint.png') center / cover no-repeat;
+}
+.dashboard-site-page.gostop-lobby-page .site-header {
+  border-bottom-color: #8cbdb0;
+  background: linear-gradient(90deg, var(--fh-header-top), #e5e0f4 51%, var(--fh-header-bottom));
+}
+.dashboard-site-page .brand {
+  border-color: #fff0d5;
+  background: linear-gradient(155deg, var(--fh-header-top), var(--fh-header-bottom));
+  color: #654b50;
+  text-shadow: none;
+  box-shadow: 0 2px 6px rgba(111, 75, 80, .12);
+}
+.dashboard-site-page .user-chip {
+  border-color: #f8e6ce;
+  background: rgba(255, 250, 244, .88);
+  color: #624d54;
+  text-shadow: none;
+}
+.dashboard-site-page .site-nav,
+.dashboard-site-page .site-nav a,
+.dashboard-site-page .link-button {
+  color: #654b50;
+  text-shadow: none;
+}
+.dashboard-site-page .dashboard-welcome .statistics-overview strong { color: var(--fh-accent); }
+.dashboard-site-page.gostop-lobby-page .dashboard-player-card {
+  background-color: #79aa99;
+  box-shadow: 0 4px 12px rgba(63, 112, 102, .14);
+}
+.dashboard-site-page .dashboard-welcome .game-statistics .statistics-heading-actions button {
+  color: #614d50;
+}
+
+/* Distinct soft themes for the two gameplay modes. */
+.game-page {
+  --fh-game-ink: #65434e;
+  --fh-game-edge: #d8a5b8;
+  --fh-game-fill: #fff7f4;
+  --fh-game-top: #f7dce4;
+  --fh-game-bottom: #ebbecb;
+  --fh-game-deep: #9b5e77;
+  --fh-game-shadow: rgba(136, 81, 106, .18);
+}
+.game-page.gostop-room-page {
+  --fh-game-ink: #405e5d;
+  --fh-game-edge: #a7bfc8;
+  --fh-game-fill: #f5fcf7;
+  --fh-game-top: #e3e0f4;
+  --fh-game-bottom: #c6e8de;
+  --fh-game-deep: #537e7d;
+  --fh-game-shadow: rgba(67, 114, 105, .16);
+}
+.game-page .game-side-rail {
+  border-color: var(--fh-game-edge);
+  border-bottom-color: var(--fh-game-edge);
+  background: rgba(255, 247, 250, .78);
+  box-shadow: 0 3px 12px var(--fh-game-shadow);
+}
+.game-page .game-player-card {
+  border-color: var(--fh-game-edge);
+  background: linear-gradient(130deg, #fffdf9, #f8e3e9);
+  color: var(--fh-game-ink);
+  text-shadow: none;
+  box-shadow: 0 3px 9px var(--fh-game-shadow);
+}
+.game-page .game-player-card.active-player {
+  border-color: #e5bf92;
+  box-shadow: 0 0 0 3px rgba(255, 239, 196, .92), 0 4px 12px var(--fh-game-shadow);
+}
+.game-page .first-player-badge {
+  border-color: #c597ab;
+  background: linear-gradient(#f9d1db, #db9eaf);
+  color: #603e50;
+}
+.game-page .player-name,
+.game-page .player-balance { color: var(--fh-game-ink); text-shadow: none; }
+.game-page .capture-summary { color: var(--fh-game-ink); text-shadow: none; }
+.game-page .capture-summary b {
+  background: #f5dde5;
+  color: #804e67;
+}
+
+/* Previously neon blue/green commands in Matgo. */
+.game-page .auto-play-button {
+  border-color: #f9e9ee;
+  background: linear-gradient(#e6e1f4, #b5d9e0);
+  color: #4f6579;
+  box-shadow: inset 0 2px rgba(255,255,255,.7), 0 4px 9px var(--fh-game-shadow);
+}
+.game-page .auto-play-button > span {
+  border-color: #9cbbcc;
+  background: #fff9fb;
+  color: #607c96;
+  box-shadow: none;
+}
+.game-page .auto-play-button b,
+.game-page .auto-play-button small {
+  color: #455f75;
+  text-shadow: none;
+}
+.game-page .auto-play-button.active {
+  border-color: #ebbbce;
+  background: linear-gradient(#f5d7e1, #db9cb8);
+  box-shadow: inset 0 2px rgba(255,255,255,.78), 0 3px 10px rgba(159,93,123,.24);
+  animation: auto-play-pulse 1.25s ease-in-out infinite;
+}
+.game-page .auto-play-button.active > span {
+  border-color: #be819d;
+  background: #fff7f7;
+  color: #94516e;
+}
+.game-page .auto-play-button.active b,
+.game-page .auto-play-button.active small { color: #60394c; text-shadow: none; }
+.game-page .turn-undo-button {
+  border-color: #dcabbf;
+  background: linear-gradient(#f9e2e8, #e7b2c5);
+  color: #734655;
+  text-shadow: none;
+  box-shadow: 0 3px 9px var(--fh-game-shadow);
+}
+.game-page .turn-undo-button b,
+.game-page .turn-undo-button small,
+.game-page .turn-undo-button em { color: #734655; }
+.game-page .side-actions button,
+.game-page .side-actions a,
+.game-page .mobile-difficulty-cycle {
+  border-color: var(--fh-game-edge);
+  background: linear-gradient(var(--fh-game-top), var(--fh-game-bottom));
+  box-shadow: 0 2px 5px var(--fh-game-shadow);
+  color: var(--fh-game-ink);
+  text-shadow: none;
+}
+.game-page .side-actions button.exit-reserved:disabled {
+  border-color: #e6c99d;
+  background: linear-gradient(#fff2d7, #eedeb8);
+  color: #796049;
+  opacity: 1;
+}
+.game-page .mobile-difficulty-cycle b,
+.game-page .mobile-difficulty-cycle small { color: var(--fh-game-ink); }
+.game-page .stake-quick-selector,
+.game-page .difficulty-selector.compact {
+  border-color: var(--fh-game-edge);
+  background: linear-gradient(#fffaf7, var(--fh-game-top));
+  color: var(--fh-game-ink);
+  box-shadow: 0 8px 18px var(--fh-game-shadow);
+}
+.game-page .stake-quick-selector header,
+.game-page .stake-quick-selector p,
+.game-page .point-value-selector legend,
+.game-page .difficulty-selector legend { color: var(--fh-game-ink); }
+.game-page .stake-quick-selector header button {
+  border-color: var(--fh-game-edge);
+  background: #fff9f6;
+  color: var(--fh-game-ink);
+}
+.game-page .stake-quick-selector > div button,
+.game-page .point-value-selector button,
+.game-page .game-stake {
+  --stake-top: #f9e6ea;
+  --stake-bottom: #eac6d1;
+  --stake-border: #c79bad;
+  --stake-text: #654653;
+  --stake-shadow: transparent;
+  color: var(--stake-text);
+  text-shadow: none;
+}
+.game-page :is(.stake-quick-selector, .point-value-selector) [data-point-value="100"],
+.game-page .game-stake[data-point-value="100"] {
+  --stake-top: #fff0d8; --stake-bottom: #f0d6ae; --stake-border: #d9ba83; --stake-text: #695133;
+}
+.game-page :is(.stake-quick-selector, .point-value-selector) [data-point-value="1000"],
+.game-page .game-stake[data-point-value="1000"] {
+  --stake-top: #e8f8f1; --stake-bottom: #b7dfd0; --stake-border: #8dbfae; --stake-text: #3c6758;
+}
+.game-page :is(.stake-quick-selector, .point-value-selector) [data-point-value="2000"],
+.game-page .game-stake[data-point-value="2000"] {
+  --stake-top: #ebf2fb; --stake-bottom: #c5d8ef; --stake-border: #9caece; --stake-text: #485e82;
+}
+.game-page :is(.stake-quick-selector, .point-value-selector) [data-point-value="5000"],
+.game-page .game-stake[data-point-value="5000"] {
+  --stake-top: #fff0e7; --stake-bottom: #ecc6b8; --stake-border: #d6a994; --stake-text: #7c5248;
+}
+.game-page :is(.stake-quick-selector, .point-value-selector) [data-point-value="10000"],
+.game-page .game-stake[data-point-value="10000"] {
+  --stake-top: #f9e8f2; --stake-bottom: #dec3e3; --stake-border: #ba97c6; --stake-text: #684d79;
+}
+.game-page .difficulty-selector [data-difficulty="easy"] {
+  --difficulty-top:#e8f3e1; --difficulty-bottom:#c8dcb8; --difficulty-border:#adc99c; --difficulty-text:#45663e; --difficulty-shadow:transparent;
+}
+.game-page .difficulty-selector [data-difficulty="normal"] {
+  --difficulty-top:#e5f4f3; --difficulty-bottom:#b6dad8; --difficulty-border:#92bdc1; --difficulty-text:#45646a; --difficulty-shadow:transparent;
+}
+.game-page .difficulty-selector [data-difficulty="hard"] {
+  --difficulty-top:#f9e7d9; --difficulty-bottom:#efc3af; --difficulty-border:#d6a98d; --difficulty-text:#765342; --difficulty-shadow:transparent;
+}
+.game-page .difficulty-selector [data-difficulty="expert"] {
+  --difficulty-top:#eee7f9; --difficulty-bottom:#cbbde6; --difficulty-border:#a99aca; --difficulty-text:#614e80; --difficulty-shadow:transparent;
+}
+.game-page .difficulty-selector.compact button,
+.game-page .difficulty-selector.compact button.selected {
+  background: linear-gradient(var(--difficulty-top), var(--difficulty-bottom));
+  border-color: var(--difficulty-border);
+  color: var(--difficulty-text);
+  text-shadow: none;
+}
+.game-page .difficulty-selector.compact button.selected,
+.game-page .point-value-selector button.selected {
+  outline: 2px solid #fffef9;
+  box-shadow: inset 0 0 0 2px var(--fh-game-deep), 0 0 0 2px var(--fh-game-edge);
+  filter: none;
+}
+.game-page .rail-command-panel .audio-controls.compact {
+  border-color: var(--fh-game-edge);
+  background: rgba(255, 251, 248, .9);
+}
+.game-page .rail-command-panel .audio-control-button {
+  border-color: var(--fh-game-edge);
+  background: linear-gradient(#fffdf9, var(--fh-game-bottom));
+  color: var(--fh-game-ink);
+  text-shadow: none;
+}
+
+/* Bring beginning/dealer selections into the same soft UI family. */
+.start-overlay,
+.starting-player-overlay,
+.exit-dialog-backdrop,
+.round-result-overlay { background: rgba(66, 60, 66, .58); }
+.start-overlay > div,
+.starting-player-overlay > section,
+.exit-dialog,
+.round-result-card {
+  border-color: #d7abb9;
+  background: linear-gradient(145deg, #fffaf3, #f5e5e9);
+  box-shadow: 0 16px 34px rgba(90, 64, 79, .24);
+  color: #624651;
+  text-shadow: none;
+}
+.start-overlay .start-logo {
+  border-color: #cf9aaf;
+  background: linear-gradient(#f4c9d7, #e9b2c8);
+  color: #674653;
+}
+.start-overlay h1::after,
+.round-result-card h2::after,
+.game-hub-heading h1::after {
+  content: ' ✿';
+  color: #c68da8;
+  font-size: .72em;
+}
+.start-overlay p:not(.eyebrow),
+.starting-player-overlay > section > p:not(.eyebrow),
+.exit-dialog-guide { color: #786571; text-shadow: none; }
+.dealer-point-value,
+.starting-player-choice,
+.dealer-difficulty {
+  border-color: #dfc8de;
+  background: rgba(250, 241, 249, .9);
+  color: #5c475f;
+  text-shadow: none;
+}
+.dealer-point-value legend,
+.starting-player-choice legend,
+.dealer-difficulty legend { color: #715774; }
+.starting-player-overlay .dealer-exit-button {
+  border-color: #c69bab;
+  background: linear-gradient(#f5d7df, #ddadbf);
+  color: #6b4654;
+  text-shadow: none;
+  box-shadow: 0 3px 7px rgba(128, 90, 112, .16);
+}
+.start-button,
+.refill-home-button {
+  border-color: #9ebcae !important;
+  background: linear-gradient(#d8f0df, #afd6c7) !important;
+  color: #3e6159;
+  box-shadow: 0 3px 8px rgba(78, 114, 98, .18);
+}
+.go-stop-panel,
+.go-stop-choice-panel {
+  border-color: #d5b6c7;
+  background: linear-gradient(#fffaf4, #f3e2eb);
+  color: #614659;
+  text-shadow: none;
+  box-shadow: 0 12px 30px rgba(95, 75, 101, .2);
+}
+.go-stop-score-medal {
+  border-color: #f2e3bd;
+  background: radial-gradient(circle at 34% 26%, #fffdf4, #f6dcac 60%, #e5bb8b);
+  color: #795438;
+  text-shadow: none;
+}
+.go-stop-heading { text-shadow: none; }
+.go-stop-heading > span { background: #e7cbdb; color: #6a4862; }
+.go-choice-button,
+.go-stop-panel .go-choice-button { background: linear-gradient(#d9eee4, #9bc8b7); color: #3b6759; text-shadow: none; }
+.stop-choice-button,
+.go-stop-panel .stop-choice-button { background: linear-gradient(#f8d7db, #ddaabf); color: #79485c; text-shadow: none; }
+.go-stop-buttons button,
+.go-stop-panel button { border-color: #f9efdf; box-shadow: 0 3px 8px rgba(119, 82, 111, .14); }
+.go-stop-buttons button > span,
+.go-stop-buttons button small,
+.go-stop-buttons button small b { color: #6b4e5b; }
+.gookjin-choice-panel,
+.shake-choice-panel {
+  border-color: #d8b4c9;
+  background: linear-gradient(#fffaf1, #f1e4ed);
+  color: #644a56;
+  box-shadow: 0 14px 32px rgba(92, 61, 82, .2);
+}
+.gookjin-choice-buttons button,
+.shake-choice-buttons button {
+  border-color: #d7adc0;
+  background: linear-gradient(#f7e4ec, #dfb6cb);
+  color: #684554;
+  text-shadow: none;
+}
+.exit-choice-list .reserve-exit-button,
+.result-new-button {
+  border-color: #91b9a6;
+  background: linear-gradient(#d7f0e1, #a7d2c0);
+  box-shadow: 0 3px 8px rgba(81, 122, 104, .16);
+  color: #3a5b4e;
+}
+.exit-choice-list .immediate-exit-button,
+.result-exit-button {
+  border-color: #d0a1b1;
+  background: linear-gradient(#f7d9dd, #ddacbc);
+  box-shadow: 0 3px 8px rgba(132, 88, 105, .15);
+  color: #744c5a;
+}
+.exit-cancel-button {
+  border-color: #c6b7cb;
+  background: #f9f2f6;
+  color: #675567;
+}
+.round-result-card .result-kicker,
+.round-result-card .result-score,
+.round-result-card .result-question { color: #805a70; }
+.money-transfer-card {
+  border-color: #d9c6a0;
+  background: linear-gradient(#fff7e9, #eedbbc);
+  color: #64503e;
+}
+.money-transfer-card.money-loss {
+  border-color: #d5aaba;
+  background: linear-gradient(#fbe8e5, #f0c3c7);
+  color: #774956;
+}
+.money-transfer-card.money-neutral {
+  border-color: #c6d4bd;
+  background: linear-gradient(#f6f7ef, #e3e9d9);
+  color: #566353;
+}
+.settlement-impact-score { background:linear-gradient(#f3f8e9,#cfe2b7); color:#4b633c; }
+.settlement-impact-multiplier { background:linear-gradient(#fff6df,#ecd5ab); color:#725638; }
+.settlement-impact-bak { background:linear-gradient(#fde6df,#efbcb7); color:#77444a; text-shadow:none; }
+
+/* Keep generated red-striped card BACKS distinct from original illustrated faces. */
+.game-page:not(.gostop-room-page) .card-back,
+.game-page .dealer-card-back,
+.game-page .deal-source-deck,
+.game-page .deal-card-back {
+  border-color: #f9eee4;
+  background: repeating-linear-gradient(45deg, #e9aab9 0 6px, #c7859d 6px 12px);
+  color: #fff7f2;
+}
+.game-page.gostop-room-page .gostop-card-back:not(.flying-card),
+.game-page.gostop-room-page .gostop-draw-pile {
+  border-color: #eee7f7;
+  background: repeating-linear-gradient(45deg, #c9b7dc 0 7px, #9dbfb9 7px 14px);
+  color: #506b6c;
+}
+.game-page.gostop-room-page .gostop-draw-pile { box-shadow: 5px 5px 0 #b8a9ca,9px 9px 0 #97b4b1,0 9px 14px rgba(74,90,89,.2); }
+.game-page.gostop-room-page .gostop-room-actions > button,
+.game-page.gostop-room-page .gostop-room-actions .audio-controls.compact .audio-control-button {
+  border-color: #b5c7c9;
+  background: linear-gradient(#f9faf5, #dce8e7);
+  color: #4a6868;
+}
+.game-page.gostop-room-page .gostop-score-summary b {
+  border-color: #fff7f0;
+  background: #dfacbd;
+  color: #694b57;
+}
+.game-page.gostop-room-page .gostop-auto-zone .auto-play-button {
+  border-color: #e8e5f3;
+  background: linear-gradient(#efedfa, #c9e4df);
+  box-shadow: 0 3px 7px rgba(78,122,117,.17);
+}
+.game-page.gostop-room-page .gostop-auto-zone .auto-play-button.active {
+  background: linear-gradient(#e7d6f0, #c1a9d9);
+}
+.game-page.gostop-room-page :is(.gostop-floor-choice,.gostop-decision,.gostop-round-result) {
+  border-color: #c5b9df;
+  background: linear-gradient(#f8fcf6, #e8e4f4);
+  color: #486261;
+}
+.game-page.gostop-room-page :is(.gostop-floor-choice,.gostop-decision,.gostop-round-result) strong { color: #597a79; }
+.game-page.gostop-room-page :is(.gostop-floor-choice,.gostop-decision,.gostop-round-result) button {
+  border-color: #b3c7c3;
+  background: linear-gradient(#ecf8f3, #bddbd3);
+  color: #41655c;
+}
+/* Flowers belong on frames/status areas, not on individual card faces. */
+.game-page.gostop-room-page .gostop-room-status strong::before {
+  content: '✿';
+  margin-right: 7px;
+  color: #a78ac0;
+  font-size: .85em;
+}

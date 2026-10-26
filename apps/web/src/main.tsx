@@ -11,6 +11,7 @@ import './styles/game.css';
 import './styles/fiveGoCelebration.css';
 import './styles/flowerTheme.css';
 import './styles/familyMenuTheme.css';
+import './styles/pastelUiTheme.css';
 
 if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {

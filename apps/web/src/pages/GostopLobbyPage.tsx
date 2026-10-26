@@ -93,7 +93,7 @@ export default function GostopLobbyPage() {
     finally { setRefilling(false); }
   };
 
-  return <PageLayout user={user} pageClassName="dashboard-site-page">
+  return <PageLayout user={user} pageClassName="dashboard-site-page gostop-lobby-page">
     <section className="welcome-panel dashboard-welcome">
       <GameStatisticsPanel stats={gameStats} modeLabel="고스톱" hero showZeroStats />
       <div className={`balance-card dashboard-player-card${balanceEmpty ? ' balance-empty' : ''}`} aria-label={`${user.displayName}님의 게임머니 ${money}냥`}>
