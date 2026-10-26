@@ -45,6 +45,7 @@ import { animateCardFlight } from '../lib/effects';
 import { loadGostopAiDifficulty, loadGostopPointValue, saveGostopAiDifficulty } from '../lib/gamePreferences';
 import { useGameViewportFit } from '../lib/gameViewport';
 import { saveProfile } from '../lib/localStore';
+import { uniqueId } from '../lib/uniqueId';
 import type { GostopSettlementRequest, MatchStatistics, UserProfile } from '../lib/types';
 
 const COMPUTER_TURN_DELAY_MS = 1_700;
@@ -142,7 +143,7 @@ export default function GostopGamePage() {
   const floorCardsRef = useRef<HTMLDivElement | null>(null);
   const humanHandRef = useRef<HTMLDivElement | null>(null);
   const turnAnimationRef = useRef(false);
-  const roundGameUuidRef = useRef(crypto.randomUUID());
+  const roundGameUuidRef = useRef(uniqueId());
   const settledRoundRef = useRef<string | null>(null);
 
   useEffect(() => {
@@ -156,7 +157,7 @@ export default function GostopGamePage() {
         computerA: profile.gostopComputerABalance ?? DEFAULT_GOSTOP_COMPUTER_BALANCE,
         computerB: profile.gostopComputerBBalance ?? DEFAULT_GOSTOP_COMPUTER_BALANCE
       });
-      roundGameUuidRef.current = crypto.randomUUID();
+      roundGameUuidRef.current = uniqueId();
       settledRoundRef.current = null;
       setRoom(createGostopRoom(Date.now(), loadGostopPointValue(), 1, 'human', computerPlayers));
       setDealing(true);
@@ -563,7 +564,7 @@ export default function GostopGamePage() {
     setExitDialogOpen(false);
     setExitReserved(false);
     setDealing(true);
-    roundGameUuidRef.current = crypto.randomUUID();
+    roundGameUuidRef.current = uniqueId();
     settledRoundRef.current = null;
     const nextStarter = room.roundResult === 'win' && room.winner ? room.winner : room.startingPlayer;
     setRoom(createGostopRoom(Date.now(), room.pointValue, nextGostopRoundMultiplier(room.roundResult), nextStarter, room.computerPlayers));
@@ -620,13 +621,13 @@ export default function GostopGamePage() {
       </nav>
       {dealing && <GostopDealAnimation />}
       <section ref={computerAHandRef} className={`gostop-seat opponent-a${room.currentPlayer === 'computerA' ? ' active' : ''}`}>
-        <div className="gostop-player-summary"><span>{room.computerPlayers.computerA.icon}</span><b>{room.computerPlayers.computerA.name}</b><small>{formatMoney(liveBalances.computerA)}냥</small></div>
+        <div className="gostop-player-summary"><span className="floral-avatar" data-flower-avatar={room.computerPlayers.computerA.icon === '🐱' ? 'cat' : room.computerPlayers.computerA.icon === '🐻' ? 'bear' : 'emoji'}>{room.computerPlayers.computerA.icon}</span><b>{room.computerPlayers.computerA.name}</b><small>{formatMoney(liveBalances.computerA)}냥</small></div>
         <GostopHiddenHand cardIds={room.players.computerA.hand} />
         <GostopScoreSummary key={`${computerAScore.total}-${room.players.computerA.goCount}`} score={computerAScore} capturedCount={room.players.computerA.captured.length} goCount={room.players.computerA.goCount} />
         <GostopOpponentCaptured cardIds={room.players.computerA.captured} name={room.computerPlayers.computerA.name} gookjinAsDoubleJunk={room.players.computerA.gookjinAsDoubleJunk} />
       </section>
       <section ref={computerBHandRef} className={`gostop-seat opponent-b${room.currentPlayer === 'computerB' ? ' active' : ''}`}>
-        <div className="gostop-player-summary"><span>{room.computerPlayers.computerB.icon}</span><b>{room.computerPlayers.computerB.name}</b><small>{formatMoney(liveBalances.computerB)}냥</small></div>
+        <div className="gostop-player-summary"><span className="floral-avatar" data-flower-avatar={room.computerPlayers.computerB.icon === '🐱' ? 'cat' : room.computerPlayers.computerB.icon === '🐻' ? 'bear' : 'emoji'}>{room.computerPlayers.computerB.icon}</span><b>{room.computerPlayers.computerB.name}</b><small>{formatMoney(liveBalances.computerB)}냥</small></div>
         <GostopHiddenHand cardIds={room.players.computerB.hand} />
         <GostopScoreSummary key={`${computerBScore.total}-${room.players.computerB.goCount}`} score={computerBScore} capturedCount={room.players.computerB.captured.length} goCount={room.players.computerB.goCount} />
         <GostopOpponentCaptured cardIds={room.players.computerB.captured} name={room.computerPlayers.computerB.name} gookjinAsDoubleJunk={room.players.computerB.gookjinAsDoubleJunk} />
@@ -647,7 +648,7 @@ export default function GostopGamePage() {
       </section>
       <div className="gostop-room-status" aria-live="polite"><strong>{room.phase === 'round-ended' ? '판 종료' : humanTurn ? '내 차례' : `${playerName(room.currentPlayer, user, room.computerPlayers)} 차례`}</strong><span>{room.lastAction}</span></div>
       <section className={`gostop-human-seat${humanTurn ? ' active' : ''}`}>
-        <div className="gostop-player-summary human"><span>🙂</span><b>{user.displayName}</b><small>{money}냥</small></div>
+        <div className="gostop-player-summary human"><span className="floral-avatar" data-flower-avatar="human">🙂</span><b>{user.displayName}</b><small>{money}냥</small></div>
         <GostopScoreSummary key={`${humanScore.total}-${room.players.human.goCount}`} score={humanScore} capturedCount={room.players.human.captured.length} goCount={room.players.human.goCount} />
         <div className="gostop-human-captured">
           <b>내가 먹은 패</b>

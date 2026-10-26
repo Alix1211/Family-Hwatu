@@ -1,0 +1,366 @@
+/* Family Hwatu table skin. Only the active game tables are themed here;
+   gameplay, lobby screens, original card fronts, and modal logic are unchanged. */
+:root {
+  --flower-plating: url('/floral/flower-plates.png');
+  --flower-icons: url('/floral/flower-icons.png');
+  --flower-ink: #405451;
+  --flower-gold: #9c6327;
+}
+
+.game-page { background: #fbe9e9; }
+.game-viewport-active,
+.game-viewport-active body,
+.game-viewport-active #root { background: #f8e9e9; }
+
+/* Two-player matgo: cherry-blossom pink, with a readable table surface. */
+.game-table {
+  background: #ffedeb url('/floral/matgo-pink.png') center / cover no-repeat;
+}
+.game-field { background: transparent; box-shadow: none; }
+.game-field::before,
+.game-field::after { display: none; }
+.game-side-rail {
+  border-left: 1px solid rgba(201,124,135,.35);
+  background: rgba(255,245,245,.56);
+  box-shadow: -9px 0 24px rgba(190,122,129,.09);
+}
+.game-player-card {
+  border-color: rgba(217,141,148,.65);
+  background: linear-gradient(120deg,rgba(255,253,252,.95),rgba(255,225,228,.9));
+  box-shadow: 0 4px 12px rgba(171,96,105,.16);
+  color: #603e45;
+}
+.game-player-card.active-player { border-color: #edac55; box-shadow: 0 0 0 3px rgba(255,214,125,.74); }
+.game-side-rail .player-name { color: #663c46; text-shadow: none; }
+.game-side-rail .player-balance { color: #ab6431; text-shadow: none; }
+.game-stake {
+  --stake-top: #fff5eb;
+  --stake-bottom: #fbd5d7;
+  --stake-border: #dd999f;
+  --stake-text: #844a53;
+  --stake-shadow: transparent;
+  box-shadow: 0 4px 13px rgba(175,100,109,.18);
+  text-shadow: none;
+}
+.computer-hand { border-color: #d5a7a7; background: rgba(255,238,232,.82); box-shadow: 0 3px 8px rgba(142,88,83,.17); }
+.human-play-dock {
+  border: 3px solid rgba(219,155,118,.75);
+  background: linear-gradient(135deg,rgba(254,232,230,.98),rgba(255,246,231,.96));
+  box-shadow: inset 0 0 0 2px rgba(255,252,244,.9),0 4px 14px rgba(170,99,91,.17);
+}
+.game-table .table-score-badge { color: #a96a32; filter: drop-shadow(0 2px 3px rgba(139,77,74,.16)); }
+.game-table .table-score-badge strong {
+  border-color: #dfa3a8;
+  background: linear-gradient(#fff9f4,#fbdcde);
+  box-shadow: 0 3px 7px rgba(145,91,88,.2);
+  color: #ac7639;
+}
+.game-table .table-score-badge strong span {
+  -webkit-text-stroke: 0;
+  color: #b17b35;
+  text-shadow: 0 1px #fff;
+}
+.game-table .table-score-badge strong small { -webkit-text-stroke: 0; color: #a56343; text-shadow: none; }
+.game-table .rail-command-panel > .difficulty-selector.compact,
+.game-table .rail-command-panel .audio-controls.compact {
+  border-color: #dea5a9;
+  background: rgba(255,247,243,.88);
+  box-shadow: 0 3px 9px rgba(153,92,87,.12);
+}
+.game-table .rail-command-panel .audio-volume { color: #805e62; }
+.game-table .rail-command-panel .side-actions button {
+  border-color: #e3a59b;
+  background: linear-gradient(#fff8f0,#f8cdd4);
+  color: #834956;
+  text-shadow: none;
+  box-shadow: 0 2px 5px rgba(166,104,99,.16);
+}
+.game-table .rail-command-panel .side-actions button:last-child {
+  border-color: #dea9a2;
+  background: linear-gradient(#fff6ea,#f1d5c1);
+}
+.game-table .card-mission-panel { border-color: #dba6a6; background: rgba(255,245,238,.94); color:#69484d; }
+.game-table .card-mission-panel header strong,
+.game-table .card-mission-panel header b small { color:#805456; }
+
+/* Three-player gostop: the mint-flower guide supplied by the designer. */
+.game-page.gostop-room-page { background: #eef7ed; color: var(--flower-ink); }
+.gostop-table {
+  --gostop-side-control-width: clamp(76px,7.3vw,102px);
+  width: 100%;
+  max-width: none;
+  border: 0;
+  background: #eaf6e9 url('/floral/gostop-mint.png') center / cover no-repeat;
+  box-shadow: none;
+}
+.gostop-table::before { display: none; }
+
+/* Full atlas dimensions: 1619 × 971; each position targets a single plate. */
+.gostop-player-summary,
+.gostop-score-summary,
+.gostop-opponent-captured,
+.gostop-human-captured,
+.gostop-human-hand,
+.gostop-room-info,
+.gostop-room-difficulty,
+.gostop-room-status {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: var(--flower-plating);
+  background-repeat: no-repeat;
+  color: var(--flower-ink);
+}
+.gostop-seat { top: 2%; gap: 5px clamp(8px,1.1vw,17px); }
+.gostop-seat.opponent-a { left: 2%; }
+.gostop-seat.opponent-b { right: 2%; }
+.gostop-player-summary {
+  min-width: clamp(145px,15vw,220px);
+  min-height: 77px;
+  padding: 11px 16px 11px 14px;
+  background-size: 320% 830%;
+  background-position: 2% 2%;
+}
+.gostop-seat.opponent-b .gostop-player-summary {
+  background-position: 98% 2%;
+}
+.gostop-player-summary.human { background-position: 2% 2%; }
+.gostop-human-seat .gostop-player-summary.human { background-color:transparent; background-image:var(--flower-plating); }
+.gostop-player-summary > span { font-size: clamp(1.6rem,2.4vw,2.4rem); margin-right: 7px; }
+.gostop-player-summary > span.floral-avatar { width:50px; height:50px; margin-right:8px; display:grid; place-items:center; }
+.gostop-player-summary > span.floral-avatar[data-flower-avatar='cat'],
+.gostop-player-summary > span.floral-avatar[data-flower-avatar='bear'],
+.gostop-player-summary > span.floral-avatar[data-flower-avatar='human'] {
+  font-size:0;
+  background-image:var(--flower-icons);
+  background-repeat:no-repeat;
+  background-size:400% 200%;
+}
+.gostop-player-summary > span.floral-avatar[data-flower-avatar='cat'] { background-position:33.333% 100%; }
+.gostop-player-summary > span.floral-avatar[data-flower-avatar='bear'] { background-position:66.667% 100%; }
+.gostop-player-summary > span.floral-avatar[data-flower-avatar='human'] { background-position:100% 100%; }
+.gostop-player-summary b { color: #304a4d; font-size: clamp(.86rem,1.2vw,1.1rem); text-shadow: 0 1px white; }
+.gostop-player-summary small { color: #ba7835; font-size: clamp(.7rem,.95vw,.95rem); text-shadow: 0 1px white; }
+.gostop-seat.active .gostop-player-summary,
+.gostop-human-seat.active .gostop-player-summary {
+  box-shadow: 0 0 0 3px rgba(255,207,83,.76),0 0 18px rgba(242,174,74,.46);
+  border-radius: 14px;
+}
+.gostop-seat .gostop-score-summary {
+  min-height: 72px;
+  min-width: 156px;
+  padding: 12px 15px;
+  background-size: 320% 830%;
+  background-position: 2% 2%;
+}
+.gostop-human-seat > .gostop-score-summary {
+  min-height: 98px;
+  padding: 14px 20px;
+  background-size: 320% 830%;
+  background-position: 98% 2%;
+}
+.gostop-score-summary strong,
+.gostop-human-seat > .gostop-score-summary strong {
+  color: #ae6a25;
+  text-shadow: 0 1px white;
+  font-size: clamp(1.4rem,2.1vw,2.1rem);
+}
+.gostop-score-summary strong small { color: #a87536; }
+.gostop-score-summary span { color:#354f4b; margin-top: 7px; text-shadow:none; }
+.gostop-score-summary b { background: #d96869; border-color:#fff8ee; color:white; }
+.gostop-opponent-captured {
+  width: clamp(210px,23.5vw,345px);
+  min-width: 200px;
+  height: 80px;
+  padding: 12px 18px 13px;
+  background-size: 259% 823%;
+  background-position: 3% 53%;
+}
+.gostop-opponent-captured > b { color: #96572e; font-size: .62rem; }
+.gostop-opponent-captured > span { color: #63827b; font-size: .65rem; }
+.gostop-opponent-captured .captured-card-group { max-width:110px; }
+.gostop-hidden-hand { padding-top: 3px; }
+.gostop-card-back,
+.gostop-draw-pile {
+  border-color: #f7dd9b;
+  background: repeating-linear-gradient(45deg,#de2b35 0 7px,#ae1520 7px 14px);
+  box-shadow: 0 3px 7px rgba(91,57,51,.25);
+}
+.gostop-floor { inset: 24% 10% 31%; }
+.gostop-room-status {
+  top: 13%;
+  width: min(660px,54%);
+  min-height: 86px;
+  padding: 20px 38px 15px;
+  background-size: 102.5% 725%;
+  background-position: 50% 36%;
+  transform: translateX(-50%);
+}
+.gostop-room-status strong { color:#983b3b; font-size: clamp(1rem,1.4vw,1.3rem); }
+.gostop-room-status span { color:#845a58; font-size: .72rem; }
+.gostop-room-info {
+  left: 1.8%;
+  bottom: 41%;
+  width: clamp(160px,17.5vw,265px);
+  min-height: 72px;
+  padding: 16px 27px;
+  background-size: 320% 830%;
+  background-position: 98% 2%;
+}
+.gostop-room-info strong { padding:0; text-shadow:none; color:#3d595b; }
+.gostop-room-info strong span { color:#a66b31; }
+.gostop-room-difficulty {
+  left: 1.8%;
+  bottom: 30%;
+  width: clamp(160px,17.5vw,265px);
+  padding: 17px 17px 13px;
+  background-size: 320% 830%;
+  background-position: 2% 2%;
+}
+.gostop-room-difficulty > b { color:#a46d37; font-size:.77rem; }
+.gostop-room-difficulty .difficulty-selector.compact {
+  border-color: #e8b3a9;
+  background: rgba(255,252,246,.24);
+}
+.gostop-room-difficulty .difficulty-selector.compact button { min-height: 33px; }
+.gostop-room-actions {
+  top: 31%;
+  right: 1.5%;
+  gap: 8px;
+  width: var(--gostop-side-control-width);
+  transform: none;
+}
+.gostop-room-actions button,
+.gostop-room-actions .audio-controls.compact .audio-control-button {
+  min-height: 48px;
+  border: 2px solid #e5b18a;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#fffbf1,#f7d7cb);
+  box-shadow: 0 3px 7px rgba(112,97,75,.16);
+  color: #885147;
+  text-shadow:none;
+  font-size: .78rem;
+}
+.gostop-room-actions button:hover:not(:disabled) { filter: brightness(1.04); }
+.gostop-room-actions .audio-controls.compact {
+  border: 0;
+  padding: 0;
+  gap: 6px;
+  background: transparent;
+  box-shadow: none;
+}
+.gostop-room-actions .audio-controls.compact .audio-control-button,
+.gostop-room-actions .audio-controls.compact .audio-control-button.muted,
+.gostop-room-actions .audio-controls.compact .audio-control-button.active {
+  min-height: 56px;
+  border-color: #d7b28e;
+  background: linear-gradient(#fffaf1,#e9f1d8);
+  color:#6d6151;
+  box-shadow: 0 3px 7px rgba(112,97,75,.16);
+}
+.gostop-room-actions .audio-controls.compact .audio-control-button.active { outline:2px solid #a3bf76; }
+.gostop-room-actions .audio-controls.compact .audio-volume { color:#6f6355; }
+.gostop-room-actions .audio-controls.compact .audio-control-button > span { display:none; }
+.gostop-room-actions .audio-controls.compact .audio-control-button,
+.gostop-room-actions > button { position:relative; min-height:67px; padding:44px 3px 5px; }
+.gostop-room-actions .audio-controls.compact .audio-control-button::before,
+.gostop-room-actions > button::before {
+  content:'';
+  position:absolute;
+  top:0;
+  left:50%;
+  width:45px;
+  height:45px;
+  pointer-events:none;
+  transform:translateX(-50%);
+  background-image:var(--flower-icons);
+  background-repeat:no-repeat;
+  background-size:400% 200%;
+}
+.gostop-room-actions .audio-controls.compact .audio-control-button::before { background-position:0 0; }
+.gostop-room-actions .audio-controls.compact .audio-control-button.bgm-button::before { background-position:33.333% 0; }
+.gostop-room-actions > button:first-of-type::before { background-position:100% 0; }
+.gostop-room-actions > button:last-of-type::before { background-position:0 100%; }
+.gostop-room-actions .audio-controls.compact .audio-control-button b { font-size:.64rem; white-space:nowrap; }
+
+.gostop-human-seat { right: 1.8%; bottom: 2%; left: 1.8%; gap: 7px 14px; grid-template-columns: minmax(145px,210px) minmax(0,1fr) var(--gostop-side-control-width); }
+.gostop-human-seat .gostop-player-summary.human { min-width:0; min-height: 75px; }
+.gostop-human-captured {
+  height: clamp(66px,9.5vh,94px);
+  padding: 17px 31px;
+  background-size: 266% 823%;
+  background-position: 67% 53%;
+}
+.gostop-human-captured > b { color:#a15e48; font-size:.74rem; }
+.gostop-human-captured > span { color:#806d65; }
+.gostop-human-hand {
+  padding: 22px 27px 19px;
+  background-size: 259% 823%;
+  background-position: 3% 53%;
+}
+.gostop-hand-card-slot { flex-basis:clamp(56px,5.9vw,86px); width:clamp(56px,5.9vw,86px); }
+.gostop-auto-zone .auto-play-button {
+  border: 2px solid #c5b58c;
+  border-radius: 18px;
+  background: linear-gradient(#e9faff,#98e1f3);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.6),0 3px 8px rgba(91,108,113,.15);
+}
+.gostop-auto-zone .auto-play-button > span { border-color:#5facd2; background:#eafaff; color:#287bac; }
+.gostop-auto-zone .auto-play-button b { color:#236487; text-shadow:none; }
+.gostop-auto-zone .auto-play-button small { color:#41657c; }
+.gostop-auto-zone .auto-play-button.active { border-color:#ffa650; background: linear-gradient(#ffe8a9,#efac64); }
+
+/* The final plate atlas has true transparency. Do not round the background
+   rectangles: clipping them would cut the flowers at the frame corners. */
+.gostop-human-seat .gostop-score-summary strong,
+.gostop-seat .gostop-score-summary strong { color:#925c2e; text-shadow:none; }
+.gostop-score-summary strong small { color:#875e40; }
+.gostop-human-seat .gostop-score-summary span,
+.gostop-seat .gostop-score-summary span { color:#38514e; }
+.gostop-player-summary,
+.gostop-score-summary,
+.gostop-opponent-captured,
+.gostop-room-info,
+.gostop-room-difficulty,
+.gostop-room-status,
+.gostop-human-captured,
+.gostop-human-hand { border-radius:0; }
+
+/* Keep decision dialogs readable on the pastel board. */
+.gostop-floor-choice,.gostop-decision,.gostop-round-result {
+  border-color:#e2b1a0;
+  background:linear-gradient(135deg,#fffdf6,#fce5e1);
+  box-shadow:0 14px 38px rgba(83,78,65,.28);
+  color:#674a4b;
+}
+.gostop-floor-choice strong,.gostop-decision strong,.gostop-round-result strong {color:#aa5b5a;}
+.gostop-decision > span,.gostop-round-result > span,.gostop-drawn-card {color:#735b5b;}
+
+/* Portrait and narrow screens keep the existing compact component layout. */
+@media (max-width:720px) and (orientation:portrait) {
+  .gostop-table { --gostop-side-control-width:56px; }
+  .gostop-seat { top:7px; }
+  .gostop-seat.opponent-a { left:5px; }
+  .gostop-seat.opponent-b { right:5px; }
+  .gostop-player-summary { min-width:116px; min-height:55px; padding:8px 9px; }
+  .gostop-seat .gostop-score-summary { min-width:115px; min-height:51px; padding:8px 11px; }
+  .gostop-opponent-captured { width:142px; min-width:118px; height:51px; padding:8px 12px; }
+  .gostop-room-status { width:min(245px,62%); min-height:62px; top:14%; padding:10px 22px; }
+  .gostop-room-info { bottom:338px; left:6px; width:144px; min-height:52px; padding:11px 15px; }
+  .gostop-room-difficulty { bottom:245px; left:6px; width:144px; padding:12px 11px; }
+  .gostop-room-actions { top:auto; right:6px; bottom:275px; gap:4px; }
+  .gostop-room-actions button { min-height:28px; font-size:.57rem; }
+  .gostop-room-actions .audio-controls.compact .audio-control-button { min-height:45px; font-size:.49rem; }
+  .gostop-room-actions .audio-controls.compact .audio-control-button,.gostop-room-actions > button { min-height:45px; padding:28px 2px 2px; }
+  .gostop-room-actions .audio-controls.compact .audio-control-button::before,.gostop-room-actions > button::before { width:30px; height:30px; }
+  .gostop-player-summary > span.floral-avatar { width:37px; height:37px; }
+  .gostop-human-seat { grid-template-columns:148px minmax(0,1fr) 56px; gap:5px; bottom:8px; left:5px; right:5px; }
+  .gostop-human-seat .gostop-player-summary.human { min-height:56px; }
+  .gostop-human-seat > .gostop-score-summary { min-height:56px; padding:8px 12px; }
+  .gostop-human-captured { height:64px; padding:12px 16px; }
+  .gostop-human-hand { padding:15px 13px 10px; }
+}
+
+/* On a P11 in landscape, the viewport fitter renders a 720px-tall canvas. */
+.scaled-game-page.gostop-room-page .gostop-table { height:var(--game-logical-height); }

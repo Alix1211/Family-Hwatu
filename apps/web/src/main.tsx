@@ -9,6 +9,7 @@ import './styles/gameStatistics.css';
 import './styles/gostopRoom.css';
 import './styles/game.css';
 import './styles/fiveGoCelebration.css';
+import './styles/flowerTheme.css';
 
 if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {

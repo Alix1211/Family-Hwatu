@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import type { VoiceActor } from './audio';
 import { MATGO_OPPONENTS } from './computerPlayers';
+import { uniqueId } from './uniqueId';
 const MATGO_OPPONENT_SESSION_KEY = 'hwatu.matgo.opponent-session';
 
 export interface MatgoOpponentProfile {
@@ -25,12 +26,12 @@ export function getMatgoOpponentSessionId(): string {
   try {
     const stored = window.sessionStorage.getItem(MATGO_OPPONENT_SESSION_KEY);
     if (stored) return stored;
-    const created = crypto.randomUUID();
+    const created = uniqueId();
     window.sessionStorage.setItem(MATGO_OPPONENT_SESSION_KEY, created);
     return created;
   }
   catch {
-    return crypto.randomUUID();
+    return uniqueId();
   }
 }
 

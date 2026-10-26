@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import type { VoiceActor } from './audio';
+import { uniqueId } from './uniqueId';
 
 export type ComputerPlayerSlot = 'computerA' | 'computerB';
 export interface ComputerPlayerProfile {
@@ -65,12 +66,12 @@ export function getGostopOpponentSessionId(): string {
   try {
     const stored = window.sessionStorage.getItem(GOSTOP_OPPONENT_SESSION_KEY);
     if (stored) return stored;
-    const created = crypto.randomUUID();
+    const created = uniqueId();
     window.sessionStorage.setItem(GOSTOP_OPPONENT_SESSION_KEY, created);
     return created;
   }
   catch {
-    return crypto.randomUUID();
+    return uniqueId();
   }
 }
 

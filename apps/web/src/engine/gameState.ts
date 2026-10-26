@@ -11,6 +11,7 @@ import type { RoundMultiplier } from './rules/nagari';
 import { DEFAULT_MATGO_RULES, isMatgoPointValue, matgoRulesForPointValue, type MatgoPointValue } from './rules/settings';
 import { evaluateChongtong, findBombOptions, findShakeOptions, isThreePpeok, stealPeeByValue, stealPeeCards } from './rules/specialRules';
 import type { GameState, PlayerId, PpeokPile, TurnResult, TurnSpecialEvent, TurnSpecialKind } from './types';
+import { uniqueId } from '../lib/uniqueId';
 
 export { MAX_NAGARI_MULTIPLIER, nextRoundMultiplier } from './rules/nagari';
 
@@ -35,7 +36,7 @@ export function createInitialGame(
   const chongtong = evaluateChongtong(dealt.humanHand, dealt.computerHand, dealt.floorCards);
   return {
     stateVersion: GAME_STATE_VERSION,
-    gameUuid: crypto.randomUUID(),
+    gameUuid: uniqueId(),
     gameMode: 'matgo',
     computerDifficulty,
     pointValue,

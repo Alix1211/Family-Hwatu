@@ -33,6 +33,17 @@ npm run build:offline
 - 오프라인 버전에서는 계정 관리 화면이 숨겨지고 로컬 플레이어가 자동으로 선택됩니다.
 - 원본 카드 그림, 오디오, 맞고·고스톱 점수 규칙과 AI 난이도 코드는 변경하지 않았습니다.
 
+## 2026-10-26 꽃무늬 게임판 적용
+
+- 2인 맞고: `apps/web/public/floral/matgo-pink.png` (벚꽃 핑크판).
+- 3인 고스톱: `apps/web/public/floral/gostop-mint.png` (민트 꽃판).
+- `flower-plates.png`와 `flower-icons.png`는 제공된 가이드에서 게임방 점수판, 획득패 영역, 난이도, 버튼, 일부 캐릭터 아이콘에 사용합니다.
+- 게임판 스타일은 `apps/web/src/styles/flowerTheme.css`에서 따로 관리합니다. **로비와 카드 앞면은 수정하지 않았습니다.**
+- 2026-10-26에 사용자가 다시 보내주신 `gaia_flower_plates_and_controls (1) 복사.png`로 플레이트 아틀라스를 교체했습니다. **새 파일은 실제 투명 PNG**이며, 오래된 불투명 시트는 더 이상 참조하지 않습니다.
+- 다음 로비 화면 시안과 스프라이트 시트는 `design-references/family-hwatu/`에 참고용으로 보관했습니다. **로비 화면 자체는 아직 교체하지 않았습니다.**
+- `uniqueId.ts`는 HTTP/오프라인 환경에서 `crypto.randomUUID()`가 없을 때 게임이 빈 화면이 되지 않도록 UUID를 생성합니다.
+- 개인용 정적 실행본은 `dist-offline/`에 있으며, `file://`로 직접 열지 말고 HTTPS 정적 호스팅 또는 APK WebView 패키징으로 실행하십시오.
+
 ## 검증
 
 `npm run typecheck`, `npm test`, `npm run build:offline`을 실행해 코드·빌드 검사를 진행합니다. 실제 기기에서 최초 설치, 비행기 모드 재실행, 게임머니 정산과 이어하기는 별도 확인이 필요합니다.
