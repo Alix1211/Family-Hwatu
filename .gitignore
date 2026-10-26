@@ -33,6 +33,7 @@ id_ed25519
 **/bin/
 **/obj/
 dist/
+/dist-offline/
 
 # Generated frontend / test output
 **/wwwroot/

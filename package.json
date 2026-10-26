@@ -8,8 +8,10 @@
   "scripts": {
     "assets:hwatu": "npm run assets:hwatu --workspace @hwatu/web",
     "build": "npm run build --workspace @hwatu/web",
+    "build:offline": "npm run build:offline --workspace @hwatu/web",
     "check:public": "node scripts/check-public-release.mjs && npm run typecheck && npm test && npm run build && dotnet build services/api/Hwatu.Server.csproj",
     "dev": "npm run dev --workspace @hwatu/web",
+    "dev:offline": "npm run dev:offline --workspace @hwatu/web",
     "dev:web": "npm run dev --workspace @hwatu/web",
     "dev:server": "dotnet run --project services/api/Hwatu.Server.csproj",
     "simulate:ai": "npm run simulate:ai --workspace @hwatu/web",

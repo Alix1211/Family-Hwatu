@@ -1,5 +1,7 @@
 import type { GameState } from '../engine/types';
 import type { FamilyUser, GostopSettlementRequest, GostopSettlementResult, SaveGameResult, ServerGameSave, SessionData, UserProfile } from './types';
+import { OFFLINE_MODE } from './offlineMode';
+import { offlineRequest } from './offlineApi';
 
 interface ApiEnvelope<T> {
   ok: boolean;
@@ -41,6 +43,7 @@ function wait(delayMs: number, signal?: AbortSignal): Promise<void> {
 }
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+  if (OFFLINE_MODE) return offlineRequest<T>(path, options);
   let response: Response;
   try {
     response = await fetch(path, {
@@ -66,6 +69,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 }
 
 export async function ensureCsrf(signal?: AbortSignal): Promise<string> {
+  if (OFFLINE_MODE) return 'offline-local';
   if (csrfToken) return csrfToken;
   const result = await request<{ csrfToken: string }>('/api/auth/csrf', { signal });
   csrfToken = result.csrfToken;

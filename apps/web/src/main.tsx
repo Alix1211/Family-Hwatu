@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import App from './App';
+import { OFFLINE_MODE } from './lib/offlineMode';
 import './styles/app.css';
 import './styles/gameHub.css';
 import './styles/gameStatistics.css';
@@ -34,12 +35,13 @@ if (import.meta.env.DEV && 'serviceWorker' in navigator) {
     window.location.reload();
   });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js?v=9', { updateViaCache: 'none' })
+    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}service-worker.js?v=${OFFLINE_MODE ? 'offline1' : '9'}`, { updateViaCache: 'none' })
       .then(registration => registration.update())
       .catch(() => undefined);
   });
 }
 
+const Router = OFFLINE_MODE ? HashRouter : BrowserRouter;
 createRoot(document.getElementById('root')!).render(
-  <StrictMode><BrowserRouter><App /></BrowserRouter></StrictMode>
+  <StrictMode><Router><App /></Router></StrictMode>
 );

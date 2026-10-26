@@ -1,3 +1,5 @@
+import { publicAsset } from './offlineMode';
+
 const configuredBackgroundMusic = import.meta.env.VITE_GAME_BGM_URL?.trim();
 
 export const EFFECT_AUDIO_ASSETS = Object.freeze({
@@ -168,7 +170,7 @@ export async function loadGameAudioAsset(context: AudioContext, key: GameAudioAs
   const pending = pendingBuffers.get(key);
   if (pending) return pending;
 
-  const request = fetch(GAME_AUDIO_ASSETS[key])
+  const request = fetch(publicAsset(GAME_AUDIO_ASSETS[key]))
     .then(response => {
       if (!response.ok) throw new Error(`오디오 자산을 불러오지 못했습니다: ${key}`);
       return response.arrayBuffer();

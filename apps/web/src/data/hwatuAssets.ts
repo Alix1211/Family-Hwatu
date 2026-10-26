@@ -1,4 +1,5 @@
 import sourceFileMap from './hwatuAssetMap.json';
+import { publicAsset } from '../lib/offlineMode';
 
 const sources = sourceFileMap as Readonly<Record<string, string>>;
 
@@ -28,6 +29,6 @@ export const HWATU_ASSET_CREDITS: readonly HwatuAssetCredit[] = Object.freeze(
 );
 
 export const getHwatuAssetUrl = (cardId: string): string | null =>
-  sources[cardId] ? `/cards/hwatu/${cardId}.svg` : null;
+  sources[cardId] ? publicAsset(`/cards/hwatu/${cardId}.svg`) : null;
 
 export const getHwatuSourceTitle = (cardId: string): string | null => sources[cardId] ?? null;

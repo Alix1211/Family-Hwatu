@@ -39,6 +39,7 @@ import { normalizeMatgoPointValue, type MatgoPointValue } from '../engine/rules/
 import { findBombOptions, findShakeOptions, type BombOption } from '../engine/rules/specialRules';
 import type { GameState, TurnResult, TurnSpecialEvent } from '../engine/types';
 import { loadMatgoServerGame, saveMatgoServerGame, session } from '../lib/api';
+import { OFFLINE_MODE } from '../lib/offlineMode';
 import { applyAudioSettings, pauseGameAudio, playAutoPlaySound, playBombSound, playBonusPeeSound, playCancelSound, playCaptureSound, playCardSound, playChongtongSound, playDealerResultSound, playDealSound, playDecisionSound, playFlipSound, playGoSound, playGookjinSound, playLoseSound, playMissionSound, playMoneySound, playNagariSound, playPeeTransferSound, playPpeokSound, playScoreSound, playSelectSound, playShakeSound, playSpecialMoveSound, playStartSound, playStopSound, playUndoSound, playWinSound, unlockAudio, type VoiceActor } from '../lib/audio';
 import { loadAudioSettings, saveAudioSettings, type AudioSettings } from '../lib/audioSettings';
 import { animateCapturedCardTransfers, animateCardFlight } from '../lib/effects';
@@ -185,7 +186,7 @@ export default function GamePage() {
 
   const persist = async (state: GameState, account: UserProfile, auth: SessionData | null) => {
     await saveLocalGame(account.id, state, Boolean(auth));
-    if (!auth || !navigator.onLine) return;
+    if (!auth || (!OFFLINE_MODE && !navigator.onLine)) return;
     try {
       const saved = await saveMatgoServerGame(auth, state);
       await saveLocalGame(account.id, state, false);

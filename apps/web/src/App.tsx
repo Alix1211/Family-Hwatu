@@ -11,6 +11,7 @@ import GostopLobbyPage from './pages/GostopLobbyPage';
 import LicensePage from './pages/LicensePage';
 import LoginPage from './pages/LoginPage';
 import PrivacyPage from './pages/PrivacyPage';
+import { OFFLINE_MODE } from './lib/offlineMode';
 
 function LegacyGameRoute() {
   const location = useLocation();
@@ -19,14 +20,14 @@ function LegacyGameRoute() {
 
 export default function App() {
   return <Routes>
-    <Route path="/" element={<EntryPage />} />
-    <Route path="/bootstrap" element={<BootstrapPage />} />
-    <Route path="/login" element={<LoginPage />} />
+    <Route path="/" element={OFFLINE_MODE ? <Navigate to="/home" replace /> : <EntryPage />} />
+    <Route path="/bootstrap" element={OFFLINE_MODE ? <Navigate to="/home" replace /> : <BootstrapPage />} />
+    <Route path="/login" element={OFFLINE_MODE ? <Navigate to="/home" replace /> : <LoginPage />} />
     <Route path="/credits" element={<CreditsPage />} />
     <Route path="/privacy" element={<PrivacyPage />} />
     <Route path="/license" element={<LicensePage />} />
     <Route path="/home" element={<GameHubPage />} />
-    <Route path="/family" element={<AdminPage />} />
+    <Route path="/family" element={OFFLINE_MODE ? <Navigate to="/home" replace /> : <AdminPage />} />
     <Route path="/matgo" element={<DashboardPage />} />
     <Route path="/matgo/play" element={<GamePage />} />
     <Route path="/gostop" element={<GostopLobbyPage />} />
