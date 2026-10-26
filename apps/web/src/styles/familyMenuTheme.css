@@ -1,0 +1,301 @@
+/* Family Hwatu floral menu skin, 2026-10-26.
+   Visual-only overrides for mode selection and stake lobbies.
+   Matgo/Gostop rules, menus, amounts, saves and table layouts are unchanged. */
+
+.dashboard-site-page {
+  background: #ffedea url('/floral/matgo-pink.png') center / cover no-repeat;
+  color: #512f2d;
+}
+.dashboard-site-page::before,
+.dashboard-site-page::after { display: none; }
+
+.dashboard-site-page .site-header {
+  height: 80px;
+  border: 0;
+  border-bottom: 2px solid #cc866b;
+  background: #ed8f8b url('/floral/menu/menu_header.webp') center / 100% 100% no-repeat;
+  box-shadow: 0 4px 12px rgba(143, 74, 69, .15);
+}
+.dashboard-site-page .brand {
+  min-width: 116px;
+  padding: 9px 18px;
+  border: 2px solid #f4d88e;
+  border-radius: 999px;
+  background: linear-gradient(#bd3b48, #8a2635);
+  box-shadow: inset 0 2px rgba(255, 245, 224, .25), 0 3px 8px rgba(94, 27, 40, .25);
+  color: #fff0be;
+  font-weight: 900;
+  text-shadow: 0 1px rgba(69, 16, 20, .5);
+  transform: none;
+}
+.dashboard-site-page .user-chip {
+  padding: 8px 16px;
+  border: 2px solid #f1d58f;
+  border-radius: 999px;
+  background: linear-gradient(#8f3b42, #682532);
+  color: #fff1c7;
+  text-shadow: none;
+}
+.dashboard-site-page .site-footer {
+  border-top: 1px solid rgba(237, 203, 139, .48);
+  background: rgba(57, 73, 45, .9);
+  color: #fff6e6;
+}
+.dashboard-site-page .site-footer .credit-link { color: #ffe3a8; }
+
+/* 2-player Matgo / 3-player Gostop mode selection. */
+.game-hub-page .page-shell {
+  width: min(1190px, calc(100% - 32px));
+  align-items: center;
+  padding-block: 24px;
+}
+.game-hub-page .game-hub-panel {
+  width: min(1170px, 100%);
+  min-height: 640px;
+  padding: clamp(36px, 4vw, 62px);
+  border: 0;
+  border-radius: 34px;
+  background: #fff8ed url('/floral/menu/menu_modal.webp') center / 100% 100% no-repeat;
+  box-shadow: 0 15px 35px rgba(127, 69, 64, .15);
+}
+.game-hub-page .game-hub-heading {
+  margin-bottom: clamp(18px, 3vw, 32px);
+}
+.game-hub-page .game-hub-heading span {
+  color: #b76a57;
+  font-size: .82rem;
+  letter-spacing: .12em;
+}
+.game-hub-page .game-hub-heading h1 {
+  margin-top: 10px;
+  color: #59352c;
+  font-size: clamp(1.75rem, 3.2vw, 2.8rem);
+  text-shadow: 0 1px rgba(255, 255, 255, .9);
+}
+.game-hub-page .game-mode-grid {
+  gap: clamp(14px, 2.7vw, 34px);
+}
+.game-hub-page .game-mode-card,
+.game-hub-page .game-mode-card.gostop {
+  min-height: clamp(280px, 26vw, 384px);
+  padding: clamp(22px, 3vw, 37px);
+  border: 0;
+  border-radius: 28px;
+  background: url('/floral/menu/menu_matgo.webp') center / 100% 100% no-repeat;
+  box-shadow: 0 8px 14px rgba(98, 51, 50, .14);
+  color: #fffdf7;
+  text-align: left;
+}
+.game-hub-page .game-mode-card.gostop {
+  background-image: url('/floral/menu/menu_gostop.webp');
+}
+.game-hub-page .game-mode-card::after { content: none; }
+.game-hub-page .game-mode-card:hover,
+.game-hub-page .game-mode-card:focus-visible,
+.game-hub-page .game-mode-card.matgo:hover,
+.game-hub-page .game-mode-card.matgo:focus-visible {
+  outline: 3px solid #fff3bb;
+  outline-offset: 2px;
+  filter: brightness(1.04);
+  transform: translateY(-3px);
+}
+.game-hub-page .game-mode-players {
+  padding: 7px 16px;
+  border: 2px solid #e3c97d;
+  border-radius: 999px;
+  background: rgba(112, 39, 45, .82);
+  color: #fff1c6;
+  font-size: .97rem;
+}
+.game-hub-page .gostop .game-mode-players { background: rgba(39, 94, 79, .86); }
+.game-hub-page .game-mode-card strong {
+  margin-top: 35px;
+  font-size: clamp(3.2rem, 5.6vw, 4.75rem);
+  line-height: 1.04;
+  text-shadow: 0 3px 5px rgba(80, 37, 36, .35);
+}
+.game-hub-page .game-mode-card small {
+  margin-top: 10px;
+  color: #fff7e4;
+  font-size: clamp(.86rem, 1.4vw, 1.06rem);
+  text-shadow: 0 2px 3px rgba(70, 37, 34, .27);
+}
+.game-hub-page .game-mode-card b {
+  margin-top: 22px;
+  padding: 15px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: #fff5c8;
+  font-size: 1.04rem;
+  text-shadow: 0 2px 4px rgba(57, 33, 26, .6);
+}
+.game-hub-page .game-mode-card.planning { opacity: 1; }
+
+/* Shared stake selection, including live statistics and game money. */
+.dashboard-site-page:not(.game-hub-page) .page-shell {
+  width: min(1160px, calc(100% - 32px));
+  padding-block: 24px;
+}
+.dashboard-site-page .dashboard-welcome {
+  width: min(1119px, 100%);
+  min-height: 608px;
+  gap: clamp(14px, 2vw, 22px);
+  padding: clamp(30px, 3.7vw, 53px);
+  border: 0;
+  border-radius: 28px;
+  background: #fff8ef url('/floral/menu/stake_panel.webp') center / 100% 100% no-repeat;
+  box-shadow: 0 14px 30px rgba(130, 79, 65, .14);
+}
+.dashboard-site-page .dashboard-welcome::before,
+.dashboard-site-page .dashboard-welcome::after { display: none; }
+.dashboard-site-page .dashboard-welcome .game-statistics,
+.dashboard-site-page .dashboard-welcome .dashboard-player-card,
+.dashboard-site-page .dashboard-welcome .dashboard-actions { z-index: 2; }
+.dashboard-site-page .dashboard-welcome .statistics-overview {
+  gap: clamp(6px, 1vw, 12px);
+}
+.dashboard-site-page .dashboard-welcome .statistics-overview > div {
+  min-height: 66px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff8ed url('/floral/menu/stat_panel.webp') center / 100% 100% no-repeat;
+  box-shadow: none;
+}
+.dashboard-site-page .statistics-overview span { color: #6c4639; }
+.dashboard-site-page .statistics-overview strong { color: #bc4b48; }
+.dashboard-site-page .hero-statistics .statistics-heading-actions button {
+  min-height: 34px;
+  padding: 5px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff5e4 url('/floral/menu/records.webp') center / 100% 100% no-repeat;
+  color: #6d3a27;
+  box-shadow: none;
+  font-size: .76rem;
+}
+.dashboard-site-page .dashboard-player-card {
+  min-height: 108px;
+  padding: 13px;
+  border: 0;
+  border-radius: 17px;
+  background: #276450 url('/floral/menu/wallet.webp') center / 100% 100% no-repeat;
+  box-shadow: 0 6px 15px rgba(62, 64, 44, .15);
+}
+.dashboard-site-page .dashboard-player-money {
+  padding: 10px 12px;
+  background: transparent;
+}
+.dashboard-site-page .dashboard-player-money strong {
+  color: #ffe09b;
+  font-size: clamp(1.65rem, 2.7vw, 2.3rem);
+}
+.dashboard-site-page .dashboard-player-money span { color: #f8f8e8; }
+.dashboard-site-page .dashboard-actions { gap: 0; margin-top: 4px; }
+.dashboard-site-page .dashboard-actions > .secondary-button {
+  min-width: 172px;
+  min-height: 59px;
+  margin-bottom: 10px;
+  border: 0;
+  border-radius: 13px;
+  background: #589548 url('/floral/menu/continue.webp') center / 100% 100% no-repeat;
+  box-shadow: none;
+  color: #fffaf0;
+  text-shadow: 0 1px 2px rgba(43, 84, 34, .5);
+}
+.dashboard-site-page .dashboard-point-entry > div {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 14px);
+}
+.dashboard-site-page .dashboard-point-entry button,
+.dashboard-site-page .dashboard-point-entry button:nth-child(n) {
+  display: grid;
+  grid-template-rows: 27px 44px minmax(22px, 1fr) 32px;
+  min-height: 179px;
+  padding: 16px 12px 12px;
+  border: 0;
+  border-radius: 18px;
+  background: url('/floral/menu/bet_100.webp') center / 100% 100% no-repeat;
+  box-shadow: 0 6px 10px rgba(117, 71, 53, .15);
+  color: #fffbea;
+}
+.dashboard-site-page .dashboard-point-entry button:nth-child(2) { background-image: url('/floral/menu/bet_1000.webp'); }
+.dashboard-site-page .dashboard-point-entry button:nth-child(3) { background-image: url('/floral/menu/bet_2000.webp'); }
+.dashboard-site-page .dashboard-point-entry button:nth-child(4) { background-image: url('/floral/menu/bet_5000.webp'); }
+.dashboard-site-page .dashboard-point-entry button:nth-child(5) { background-image: url('/floral/menu/bet_10000.webp'); }
+.dashboard-site-page .dashboard-point-entry button::before { content: none; }
+.dashboard-site-page .dashboard-point-entry .room-kind {
+  color: #633c2c;
+  font-size: clamp(.77rem, 1.15vw, .97rem);
+  line-height: 27px;
+  text-shadow: none;
+}
+.dashboard-site-page .dashboard-point-entry .room-stake {
+  display: grid;
+  place-items: center;
+  margin: 4px 0 0;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: clamp(.75rem, 1.15vw, .98rem);
+  line-height: 1.15;
+  text-shadow: 0 1px 2px rgba(49, 29, 31, .38);
+}
+.dashboard-site-page .dashboard-point-entry small {
+  align-self: center;
+  margin: 0;
+  color: #fff4de;
+  font-size: clamp(.72rem, 1.08vw, .91rem);
+  text-shadow: 0 1px 2px rgba(69, 41, 44, .4);
+}
+.dashboard-site-page .dashboard-point-entry .room-enter {
+  align-self: center;
+  width: 100%;
+  min-height: 29px;
+  margin: 0;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #614026;
+  font-size: .89rem;
+  line-height: 25px;
+  text-shadow: none;
+}
+.dashboard-site-page .dashboard-actions .game-mode-back-button {
+  min-width: 253px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: #4e8b49 url('/floral/menu/back.webp') center / 100% 100% no-repeat;
+  box-shadow: none;
+  color: #fffdf3;
+  text-shadow: 0 1px 2px rgba(34, 72, 34, .45);
+}
+.dashboard-site-page .dashboard-actions .game-mode-back-row { margin-top: 14px; }
+
+@media (max-width: 850px) {
+  .game-hub-page .game-hub-panel { min-height: 0; padding: 34px 30px; }
+  .game-hub-page .game-mode-card,
+  .game-hub-page .game-mode-card.gostop { min-height: 280px; padding: 26px; }
+  .dashboard-site-page .dashboard-welcome { min-height: 0; padding: 35px 30px; }
+  .dashboard-site-page .dashboard-point-entry > div { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .dashboard-site-page .site-header { height: 68px; background-size: auto 100%; }
+  .dashboard-site-page .page-shell { padding-inline: 0; }
+  .game-hub-page .game-hub-panel,
+  .dashboard-site-page .dashboard-welcome {
+    padding: 28px 22px;
+    border: 2px solid #dbb36c;
+    background: rgba(255, 250, 241, .96);
+  }
+  .game-hub-page .game-mode-grid { grid-template-columns: 1fr; gap: 18px; }
+  .game-hub-page .game-mode-card,
+  .game-hub-page .game-mode-card.gostop { min-height: 265px; }
+  .dashboard-site-page .dashboard-welcome { grid-template-columns: 1fr; }
+  .dashboard-site-page .dashboard-point-entry > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-site-page .dashboard-point-entry button { min-height: 179px; }
+}

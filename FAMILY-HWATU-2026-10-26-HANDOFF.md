@@ -28,12 +28,12 @@
 - 3인 고스톱 플레이어 상단 이름/점수, 획득패/손패 플레이트, 상태 메시지, 난이도/판돈, 제어 아이콘, 일부 초상화 등은 꽃 UI로 조정했다.
 - 화투 **앞면 그림과 규칙/AI 난이도는 그대로**, 별도 신규 카드 뒷면 파일은 아직 없다.
 
-## 3. 아직 완료되지 않은 작업 — 새 AI가 임의로 진행하지 말 것
+## 3. 새 로비·판돈 화면 적용 상황 및 남은 작업
 
-1. **새 첫 화면(로비) 구현:** 사용자가 로비 시안 및 UI 시트를 보내셨으나, 이번 작업에서는 **참고 파일로만 저장**, 실제 로비 코드는 미수정.
-2. `design-references/family-hwatu/lobby-mockup.png` — 최종이라고 확정된 것은 아닌 로비 구성 참고 이미지.
-3. `design-references/family-hwatu/lobby-ui-sheet.png` — 로비 그래픽 분리/적용용 참고 시트. 누끼·비율을 확인하고 적용 전 사용자에게 최종 확정을 받을 것.
-4. 판돈 설정 화면을 비롯한 다른 화면의 디자인은 사용자가 별도로 제작 중이다. 아직 통합 지시를 받지 않았다.
+1. **로비 디자인 적용:** 사용자의 후속 요청 및 진행 승인(“응”)에 따라 기존 모드 선택 UI를 유지한 채 핑크·민트 꽃무늬 카드와 배경을 CSS로 입혔다. `GameHubPage.tsx`의 동작·텍스트는 그대로 유지했다.
+2. `design-references/family-hwatu/lobby-mockup.png` — 기존 참고 시안. 실제 적용 그래픽은 `apps/web/public/floral/menu/` WebP 리소스를 사용한다.
+3. `design-references/family-hwatu/lobby-ui-sheet.png` — 기존 분리 참고 시트. 새 메뉴 플레이트 4종을 누끼가 있는 투명 WebP로 적용했다. 실제 태블릿에서 위치·비율 최종 확인은 필요하다.
+4. **판돈 설정 화면 적용:** 맞고·고스톱 모두 동일한 기존 React 판돈 버튼·금액·입장 기능을 유지하고, 투명 패널·베팅 카드 5종·전적/머니/돌아가기 플레이트를 `familyMenuTheme.css`로 입혔다. 실기기 가로/세로 반응형 QA는 미완료.
 5. 꽃무늬 게임판의 실제 모바일·태블릿(특히 Lenovo P11 가로 모드) 시각 QA 및 피드백 반영.
 6. 개인 사이트의 **실제 배포 링크는 여전히 이전 화면일 수 있다**. 소스 GitHub 업데이트만으로 자동 사이트 배포가 되었다고 주장하지 말 것. 사이트를 수정하거나 배포하기 전 별도의 명시적 작업 지시/권한 확인이 필요하다.
 7. APK 제작 및 실기기 설치/비행기 모드/세이브 복구 테스트는 **미완료**. PWA를 APK로 만들었다고 주장하지 말 것.
@@ -62,9 +62,11 @@ npm run build:offline
 | `apps/web/src/lib/offlineMode.ts` | 오프라인 빌드 분기 |
 | `apps/web/src/lib/uniqueId.ts` | UUID 생성 호환성 |
 | `apps/web/src/pages/GostopGamePage.tsx` | 3인 고스톱 게임 화면 및 일부 꽃 아이콘 지정 |
-| `apps/web/src/styles/flowerTheme.css` | 꽃무늬 UI 배치/크롭/반응형 스타일 |
+| `apps/web/src/styles/flowerTheme.css` | 게임판의 꽃무늬 UI 배치/크롭/반응형 스타일 |
+| `apps/web/src/styles/familyMenuTheme.css` | 모드 선택/판돈 화면 전용 CSS. `main.tsx`에서 `flowerTheme.css` 다음에 불러옴 |
+| `apps/web/public/floral/menu/` | 15개 투명 WebP: `menu_*`, `stake_panel`, `bet_*`, `stat_panel`, `wallet`, `continue`, `back`, `records` |
 | `apps/web/public/floral/` | 이번에 실제 적용한 꽃무늬 배경/플레이트/아이콘 4개 |
-| `design-references/family-hwatu/` | 아직 **적용하지 않은** 다음 로비 참고자료 |
+| `design-references/family-hwatu/` | 원본 로비 참고 시안(보관), 실제 사용 리소스는 `/floral/menu/` |
 
 ## 6. 주의사항
 
@@ -73,4 +75,5 @@ npm run build:offline
 - 기기 저장 데이터 삭제 시 게임머니·전적도 없어질 수 있으며, 기기 간 자동 세이브 동기화는 없다.
 - CSS에서 아틀라스를 스프라이트처럼 활용한다. 이미지 비율/배치를 변경할 때는 실제 화면에서 플레이트 외곽이 잘리는지 확인할 것.
 - 이번 작업을 이어받는 AI는 **이미지를 마음대로 새로 생성하거나 UI를 재기획하지 말고**, 사용자의 다음 지시를 기다릴 것.
+- **검증 구분:** 위 291개 테스트 및 빌드 성공은 이전 커밋 `a6bc17e`에서 확인한 기록이다. 새 꽃 메뉴 CSS/WebP 적용 커밋은 비공개 저장소를 작업 컨테이너에서 직접 복제하지 못해 신규 `npm test`/`build:offline`은 실행하지 못했다. CSS/정적 파일 경로만 확인했다. 배포·APK 설치·기기 QA 미실시.
 
