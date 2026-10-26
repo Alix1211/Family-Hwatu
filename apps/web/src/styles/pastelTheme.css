@@ -1,0 +1,55 @@
+/*
+ * 파스텔 테마
+ * - 맞고(2인): 핑크 벚꽃 / 고스톱(3인): 민트 들꽃
+ * - 게임 화면의 모든 색은 --theme-h(주색)·--theme-h2(보조색)를 따라 바뀝니다.
+ *   톤을 바꾸고 싶으면 아래 숫자(색상각 0~360)만 고치면 됩니다.
+ * - 반드시 다른 스타일보다 마지막에 불러와야 합니다(main.tsx 참고).
+ */
+:root {
+  --theme-h: 345;
+  --theme-h2: 270;
+}
+
+.game-page {
+  --theme-h: 345;
+  --theme-h2: 270;
+}
+
+.game-page.gostop-room-page {
+  --theme-h: 150;
+  --theme-h2: 195;
+}
+
+/* 배경: 바깥 틀 → 이미지 */
+.game-viewport-active,
+.game-viewport-active body,
+.game-viewport-active #root {
+  background: hsl(345 55% 93%);
+}
+
+.game-page {
+  background: hsl(345 55% 93%) url('/backgrounds/matgo-bg.jpg') center / cover no-repeat;
+}
+
+.game-page.gostop-room-page {
+  background: hsl(150 30% 88%) url('/backgrounds/gostop-bg.jpg') center / cover no-repeat;
+}
+
+/* 기존의 진한 초록 테이블은 걷어내 배경 이미지가 보이게 한다 */
+.game-table,
+.game-field {
+  background: transparent;
+  box-shadow: none;
+}
+
+.game-field::before,
+.game-field::after {
+  display: none;
+}
+
+.gostop-table {
+  background: transparent;
+  box-shadow: none;
+  border-right: 0;
+  border-left: 0;
+}

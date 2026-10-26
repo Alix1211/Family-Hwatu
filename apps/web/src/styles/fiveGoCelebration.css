@@ -7,14 +7,14 @@
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: radial-gradient(circle, rgba(255, 249, 151, .32), rgba(207, 41, 27, .2) 42%, rgba(25, 50, 7, .5));
+  background: radial-gradient(circle, hsl(57 90% 60% / 0.32), hsl(5 68% 56% / 0.2) 42%, hsl(var(--theme-h) 54% 62% / 0.5));
   animation: five-go-flash .46s ease-out 3 alternate;
 }
 
 .five-go-celebration strong {
-  color: #fff47a;
-  -webkit-text-stroke-color: #a20b14;
-  text-shadow: 0 .045em 0 #ef392c, 0 .085em 0 #821018, 0 0 .28em #ffd83d, 0 .13em .13em rgba(38, 0, 8, .68);
+  color: hsl(55 62% 27%);
+  -webkit-text-stroke-color: hsl(356 77% 50%);
+  text-shadow: 0 .045em 0 hsl(4 76% 65%), 0 .085em 0 hsl(var(--theme-h) 35% 40% / 0.6), 0 0 .28em hsl(48 90% 50%), 0 .13em .13em hsl(var(--theme-h) 35% 40% / 0.41);
   animation: declaration-pop .62s cubic-bezier(.16, 1.35, .34, 1) both, five-go-title-pulse .45s .62s ease-in-out 2;
 }
 
@@ -27,7 +27,7 @@
   height: clamp(7px, .75vw, 13px);
   border-radius: 50%;
   background: var(--firework-color);
-  box-shadow: 0 0 8px #fff5a1, 0 0 16px currentColor;
+  box-shadow: 0 0 8px hsl(54 90% 60%), 0 0 16px currentColor;
   opacity: 0;
   animation: five-go-firework 1.25s var(--firework-delay) cubic-bezier(.14, .74, .25, 1) both;
 }

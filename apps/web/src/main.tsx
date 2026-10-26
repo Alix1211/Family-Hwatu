@@ -8,6 +8,7 @@ import './styles/gameStatistics.css';
 import './styles/gostopRoom.css';
 import './styles/game.css';
 import './styles/fiveGoCelebration.css';
+import './styles/pastelTheme.css';
 
 if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -34,7 +35,7 @@ if (import.meta.env.DEV && 'serviceWorker' in navigator) {
     window.location.reload();
   });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js?v=9', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('/service-worker.js?v=10', { updateViaCache: 'none' })
       .then(registration => registration.update())
       .catch(() => undefined);
   });
