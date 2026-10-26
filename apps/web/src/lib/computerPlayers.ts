@@ -13,13 +13,13 @@ export type GostopComputerPlayers = Record<ComputerPlayerSlot, ComputerPlayerPro
 const GOSTOP_OPPONENT_SESSION_KEY = 'hwatu.gostop.opponent-session';
 
 export const VOICE_ACTOR_NAMES: Readonly<Record<VoiceActor, string>> = Object.freeze({
-  player: '사용자',
-  opponent: '이정호',
-  matgoFemale: '김영숙',
-  gostopComputerA: '이서윤',
-  gostopComputerB: '박영수',
-  gostopComputerC: '최동철',
-  gostopComputerD: '한서진'
+  player: '케인',
+  opponent: '서린',
+  matgoFemale: '나래',
+  gostopComputerA: '다희',
+  gostopComputerB: '유하',
+  gostopComputerC: '윤경',
+  gostopComputerD: '미정'
 });
 
 export function voiceActorDisplayName(voiceActor: VoiceActor, userDisplayName: string): string {
@@ -27,12 +27,12 @@ export function voiceActorDisplayName(voiceActor: VoiceActor, userDisplayName: s
 }
 
 const COMPUTER_VOICE_PROFILES = Object.freeze([
-  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerA, actionLabel: '이서윤이', icon: '🐶', voiceActor: 'gostopComputerA' as VoiceActor }),
-  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerB, actionLabel: '박영수', icon: '🐯', voiceActor: 'gostopComputerB' as VoiceActor }),
-  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerC, actionLabel: '최동철이', icon: '🐻', voiceActor: 'gostopComputerC' as VoiceActor }),
-  Object.freeze({ name: VOICE_ACTOR_NAMES.matgoFemale, actionLabel: '김영숙이', icon: '🐱', voiceActor: 'matgoFemale' as VoiceActor }),
-  Object.freeze({ name: VOICE_ACTOR_NAMES.opponent, actionLabel: '이정호', icon: '🦊', voiceActor: 'opponent' as VoiceActor }),
-  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerD, actionLabel: '한서진이', icon: '🦋', voiceActor: 'gostopComputerD' as VoiceActor })
+  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerA, actionLabel: '다희가', icon: '🐶', voiceActor: 'gostopComputerA' as VoiceActor }),
+  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerB, actionLabel: '유하', icon: '🐯', voiceActor: 'gostopComputerB' as VoiceActor }),
+  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerC, actionLabel: '윤경이', icon: '🐻', voiceActor: 'gostopComputerC' as VoiceActor }),
+  Object.freeze({ name: VOICE_ACTOR_NAMES.matgoFemale, actionLabel: '나래가', icon: '🐱', voiceActor: 'matgoFemale' as VoiceActor }),
+  Object.freeze({ name: VOICE_ACTOR_NAMES.opponent, actionLabel: '서린', icon: '🦊', voiceActor: 'opponent' as VoiceActor }),
+  Object.freeze({ name: VOICE_ACTOR_NAMES.gostopComputerD, actionLabel: '미정이', icon: '🦋', voiceActor: 'gostopComputerD' as VoiceActor })
 ]);
 
 export const COMPUTER_PLAYERS = Object.freeze({
