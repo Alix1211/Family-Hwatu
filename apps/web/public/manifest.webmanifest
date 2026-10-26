@@ -1,7 +1,7 @@
 {
-  "name": "가족화투",
-  "short_name": "가족화투",
-  "description": "가족 계정별로 즐기는 개인용 화투 게임",
+  "name": "가이아 화투",
+  "short_name": "가이아 화투",
+  "description": "인터넷 없이 즐기는 가이아 시티 화투 게임",
   "lang": "ko-KR",
   "start_url": "/",
   "scope": "/",
