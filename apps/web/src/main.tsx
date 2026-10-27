@@ -10,7 +10,9 @@ import './styles/game.css';
 import './styles/fiveGoCelebration.css';
 import './styles/pastelTheme.css';
 
-if (import.meta.env.DEV && 'serviceWorker' in navigator) {
+if (import.meta.env.VITE_GAIA_ANDROID === '1') {
+  // All resources are bundled with the Android APK. WebView must not cache a stale PWA shell.
+} else if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const wasControlled = Boolean(navigator.serviceWorker.controller);
     void Promise.all([

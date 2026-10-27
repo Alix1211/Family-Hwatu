@@ -1,9 +1,30 @@
-# Android 앱
+# GAIA City Hwatu Android test APK
 
-Android 전용 네이티브 앱 디렉터리입니다. Kotlin과 Jetpack Compose로 100% 네이티브 구현하며 웹 화면이나 WebView를 포함하지 않습니다.
+This GAIA-only Android packaging project follows `docs/GAIA-HWATU-ANDROID-OFFLINE-UPDATE.md`.
+It is separate from the original Family-Hwatu Android native-app plan: GAIA runs a locally bundled WebView with an offline account and game settlement store. It does **not** connect to or modify the Family-Hwatu server or user data.
 
-WebView, 내장 브라우저, 로컬 HTML·JavaScript 번들 또는 웹 URL로 앱 화면을 구현하는 것은 절대 금지합니다. UI/UX는 웹 기준과 동일하게 Compose로 다시 구현하고, 웹의 음성·음향·효과 파일은 바이트가 동일한 원본을 사용합니다.
+## Build
 
-이 디렉터리는 Android 프로젝트, application ID, Compose UI, Android 저장소·네트워크 구현, 권한, 리소스, 서명과 Play 배포 설정을 소유합니다.
+Prerequisites: Node.js, JDK 17, Android SDK platform/build-tools 35 and Gradle 8.13.
 
-현재는 디렉터리 책임만 확정했으며 Gradle 프로젝트와 앱 식별자는 아직 생성하지 않았습니다.
+From repository root:
+
+1. `npm install`
+2. `VITE_GAIA_ANDROID=1 npm run build`
+3. Copy the contents of `services/api/wwwroot/` to `apps/android/app/src/main/assets/`.
+4. Run `gradle -p apps/android assembleDebug` (or import `apps/android` into Android Studio).
+
+The installable test APK is `apps/android/app/build/outputs/apk/debug/app-debug.apk`.
+
+Application ID: `com.gaiacity.hwatu` (different from Family-Hwatu). The first test build uses versionCode `1`. Preserve the application ID for upgrades.
+
+The test APK is signed with a debug key. A stable release key and device-level validation are **not complete**; do not distribute it as a production release or rely on a subsequent debug build being upgrade-compatible.
+
+## Offline behavior and limitations
+
+- Card art, AI rules and current committed sound assets are bundled inside the APK.
+- GAIA-local identity (`케인`), virtual balances and game data are persisted in Android WebView private storage.
+- Backend login, remote profile upload, synced family accounts and cloud multiplayer are not included.
+- The six portraits and 99 newly segmented voice clips from the handoff are **not present in this branch**, so this APK uses the existing game assets.
+- Remote content updating and automatic rollback have not yet been implemented.
+- Saving across app restarts is coded and covered by API tests, but a physical-device cold launch, match, audio and upgrade test are still required.

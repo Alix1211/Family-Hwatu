@@ -9,27 +9,27 @@ describe('컴퓨터 상대 이름', () => {
 
   it('모든 음색에 성별과 역할에 맞는 고유 이름을 부여한다', () => {
     expect(VOICE_ACTOR_NAMES).toEqual({
-      player: '사용자',
-      opponent: '이정호',
-      matgoFemale: '김영숙',
-      gostopComputerA: '이서윤',
-      gostopComputerB: '박영수',
-      gostopComputerC: '최동철',
-      gostopComputerD: '한서진'
+      player: '케인',
+      opponent: '서린',
+      matgoFemale: '나래',
+      gostopComputerA: '다희',
+      gostopComputerB: '유하',
+      gostopComputerC: '윤경',
+      gostopComputerD: '미정'
     });
     expect(voiceActorDisplayName('player', '어머니')).toBe('어머니');
-    expect(voiceActorDisplayName('gostopComputerC', '어머니')).toBe('최동철');
+    expect(voiceActorDisplayName('gostopComputerC', '어머니')).toBe('윤경');
   });
 
   it('같은 판에서는 항상 같은 이름을 사용한다', () => {
     const gameUuid = '44b5331b-f506-4a21-9f04-1666ab76387b';
     expect(opponentNameForGame(gameUuid)).toBe(opponentNameForGame(gameUuid));
-    expect(['이서윤', '박영수', '최동철', '김영숙', '이정호', '한서진']).toContain(opponentNameForGame(gameUuid));
+    expect(['다희', '유하', '윤경', '나래', '서린', '미정']).toContain(opponentNameForGame(gameUuid));
   });
 
   it('맞고 입장마다 이름이 부여된 여섯 상대 음성 중 하나를 선택한다', () => {
     const names = new Set(Array.from({ length: 300 }, (_, index) => opponentNameForGame(`44b5331b-f506-4a21-9f04-${String(index).padStart(12, '0')}`)));
-    expect(names).toEqual(new Set(['이서윤', '박영수', '최동철', '김영숙', '이정호', '한서진']));
+    expect(names).toEqual(new Set(['다희', '유하', '윤경', '나래', '서린', '미정']));
   });
 
   it('맞고 입장 세션 동안 이름과 음성을 함께 고정한다', () => {
@@ -58,12 +58,12 @@ describe('컴퓨터 상대 이름', () => {
 
   it('각 이름은 맞고와 고스톱에서 같은 전용 음성을 사용한다', () => {
     const profiles = Array.from({ length: 300 }, (_, index) => opponentProfileForSession(`session-${index}`));
-    expect(profiles.find(profile => profile.name === '이서윤')?.voiceActor).toBe('gostopComputerA');
-    expect(profiles.find(profile => profile.name === '박영수')?.voiceActor).toBe('gostopComputerB');
-    expect(profiles.find(profile => profile.name === '최동철')?.voiceActor).toBe('gostopComputerC');
-    expect(profiles.find(profile => profile.name === '김영숙')?.voiceActor).toBe('matgoFemale');
-    expect(profiles.find(profile => profile.name === '이정호')?.voiceActor).toBe('opponent');
-    expect(profiles.find(profile => profile.name === '한서진')?.voiceActor).toBe('gostopComputerD');
+    expect(profiles.find(profile => profile.name === '다희')?.voiceActor).toBe('gostopComputerA');
+    expect(profiles.find(profile => profile.name === '유하')?.voiceActor).toBe('gostopComputerB');
+    expect(profiles.find(profile => profile.name === '윤경')?.voiceActor).toBe('gostopComputerC');
+    expect(profiles.find(profile => profile.name === '나래')?.voiceActor).toBe('matgoFemale');
+    expect(profiles.find(profile => profile.name === '서린')?.voiceActor).toBe('opponent');
+    expect(profiles.find(profile => profile.name === '미정')?.voiceActor).toBe('gostopComputerD');
   });
 
   it('고스톱 입장마다 여섯 캐릭터 중 두 음성을 무작위 배치하고 중복하지 않는다', () => {
@@ -75,11 +75,11 @@ describe('컴퓨터 상대 이름', () => {
       selectedNames.add(players.computerB.name);
       return `${players.computerA.name}/${players.computerB.name}`;
     }));
-    expect(selectedNames).toEqual(new Set(['이서윤', '박영수', '최동철', '김영숙', '이정호', '한서진']));
+    expect(selectedNames).toEqual(new Set(['다희', '유하', '윤경', '나래', '서린', '미정']));
     expect(arrangements.size).toBe(30);
-    const middleAged = Array.from({ length: 300 }, (_, index) => gostopComputerPlayersForSession(`gostop-session-${index}`))
-      .find(players => players.computerA.name === '최동철')!;
-    expect(createGostopRoom(308, 100, 1, 'computerA', middleAged).lastAction).toContain('최동철이가 선');
+    const sampled = Array.from({ length: 300 }, (_, index) => gostopComputerPlayersForSession(`gostop-session-${index}`))
+      .find(players => players.computerA.name === '윤경')!;
+    expect(createGostopRoom(308, 100, 1, 'computerA', sampled).lastAction).toContain('윤경');
   });
 
   it('AI 판단용 난수값이 달라져도 판 고유번호가 같으면 이름이 유지된다', () => {

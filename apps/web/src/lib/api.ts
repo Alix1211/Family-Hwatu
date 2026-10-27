@@ -1,4 +1,5 @@
 import type { GameState } from '../engine/types';
+import { gaiaOfflineRequest } from './gaiaOfflineApi';
 import type { FamilyUser, GostopSettlementRequest, GostopSettlementResult, SaveGameResult, ServerGameSave, SessionData, UserProfile } from './types';
 
 interface ApiEnvelope<T> {
@@ -41,6 +42,7 @@ function wait(delayMs: number, signal?: AbortSignal): Promise<void> {
 }
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+  if (import.meta.env.VITE_GAIA_ANDROID === '1') return gaiaOfflineRequest<T>(path, options);
   let response: Response;
   try {
     response = await fetch(path, {

@@ -13,12 +13,12 @@ export default function PageLayout({ user, children, pageClassName = '', onLogin
   };
   return <div className={`site-page${pageClassName ? ` ${pageClassName}` : ''}`}>
     <header className="site-header">
-      <Link className="brand" to="/home">가족화투</Link>
+      <Link className="brand" to="/home">{import.meta.env.VITE_GAIA_ANDROID === '1' ? '가이아 화투' : '가족화투'}</Link>
       <nav className="site-nav" aria-label="주 메뉴">
         {user && <>
           <span className="user-chip">{user.displayName} 님</span>
           {user.role === 'admin' && <Link to="/family">가족 회원</Link>}
-          <button className="link-button" onClick={signOut}>로그아웃</button>
+          {import.meta.env.VITE_GAIA_ANDROID !== '1' && <button className="link-button" onClick={signOut}>로그아웃</button>}
         </>}
         {!user && onLogin && <button type="button" className="link-button guest-login-button" onClick={onLogin}>로그인</button>}
       </nav>

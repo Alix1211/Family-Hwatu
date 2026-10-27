@@ -1,0 +1,22 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.gaiacity.hwatu'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.gaiacity.hwatu'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0-test'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+

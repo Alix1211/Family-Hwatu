@@ -185,7 +185,7 @@ export default function GamePage() {
 
   const persist = async (state: GameState, account: UserProfile, auth: SessionData | null) => {
     await saveLocalGame(account.id, state, Boolean(auth));
-    if (!auth || !navigator.onLine) return;
+    if (!auth || (!navigator.onLine && import.meta.env.VITE_GAIA_ANDROID !== '1')) return;
     try {
       const saved = await saveMatgoServerGame(auth, state);
       await saveLocalGame(account.id, state, false);
